@@ -1,6 +1,7 @@
 import networkx as nx
 import matplotlib.pyplot as plt
 # from helpers import Map, load_map, show_map
+import pickle
 
 # instantiate the graph object
 G = nx.Graph()
@@ -51,16 +52,18 @@ G.add_edge("Hirsova", "Eforie", weight=86)
 G.add_edge("Vaslui", "Iasi", weight=92)
 G.add_edge("Iasi", "Neamt", weight=87)
 
+# Save the graph
+pickle.dump(G, open("graph.p", "wb"))
+
 # Plot the graph
 weight = nx.get_edge_attributes(G, "weight")
 pos = nx.get_node_attributes(G, "pos")
 
 plt.figure()
 nx.draw_networkx(G, pos, node_color=[1.0, 0.3, 0.0], node_size=1000, font_color=[0.1, 0.0, 1.0], node_shape="o", edge_color="k", linewidths=1)
-nx.draw_networkx_edge_labels(G, pos, edge_labels=weight, font_color=[1.0, 0.1, 0.5])
+nx.draw_networkx_edge_labels(G, pos, edge_labels=weight, font_color="r")
 plt.axis('off')
 plt.show()
-
 
 ##########################################################################################################
 # city_names = ["Drobeta", "Mehadia", "Lugoj", "Timisoara", "Arad", "Zerind", "Oradea", "Craiova",
